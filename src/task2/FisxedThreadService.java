@@ -3,6 +3,7 @@ package task2;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
 
@@ -41,6 +42,11 @@ public class FisxedThreadService {
                 System.out.println();
             }
         });
+        try {
+            executor.awaitTermination(numbers+1, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         executor.execute(new Runnable() {
             @Override
             public void run() {
